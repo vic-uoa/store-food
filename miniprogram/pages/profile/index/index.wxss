@@ -1,0 +1,37 @@
+.profile-page {
+  padding: 16rpx;
+}
+
+.login-card, .user-card, .points-card {
+  background: #fff;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.nickname {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.balance {
+  font-size: 34rpx;
+  color: #ffb400;
+}
+
+.history-title {
+  margin-top: 16rpx;
+  font-weight: 600;
+}
+
+.history-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8rpx 0;
+}
+
+.link {
+  display: block;
+  text-align: center;
+  color: #07c160;
+}

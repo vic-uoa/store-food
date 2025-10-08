@@ -1,0 +1,47 @@
+.category-page {
+  display: flex;
+  height: 100vh;
+}
+
+.category-sidebar {
+  width: 200rpx;
+  background: #f2f2f2;
+}
+
+.category-item {
+  padding: 24rpx;
+}
+
+.category-item.active {
+  background: #fff;
+  font-weight: 600;
+}
+
+.category-products {
+  flex: 1;
+  padding: 16rpx;
+}
+
+.product-row {
+  display: flex;
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.thumb {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.price {
+  margin-top: 8rpx;
+  color: #ff5500;
+}

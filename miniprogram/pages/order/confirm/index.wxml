@@ -1,0 +1,18 @@
+<view class="confirm-page">
+  <view class="section">
+    <view class="title">收货信息</view>
+    <input placeholder="联系人" data-field="contact" bindinput="handleInput" />
+    <input placeholder="手机号" data-field="mobile" bindinput="handleInput" />
+    <input placeholder="详细地址" data-field="detail" bindinput="handleInput" />
+  </view>
+  <view class="section">
+    <view class="title">商品清单</view>
+    <block wx:for="{{items}}" wx:key="product_id">
+      <view class="row">
+        <text>商品ID：{{item.product_id}}</text>
+        <text>x{{item.qty}}</text>
+      </view>
+    </block>
+  </view>
+  <button type="primary" bindtap="submitOrder" loading="{{submitting}}">提交订单</button>
+</view>

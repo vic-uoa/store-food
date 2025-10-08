@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+npm-debug.log*
+.DS_Store
+backend/dist/
+backend/node_modules/
+admin/node_modules/
+admin/dist/
+miniprogram/miniprogram_npm/

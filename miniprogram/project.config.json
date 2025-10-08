@@ -1,0 +1,11 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "WeMall",
+  "description": "WeMall 用户端小程序",
+  "appid": "",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true
+  }
+}

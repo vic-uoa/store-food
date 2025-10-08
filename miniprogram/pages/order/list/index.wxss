@@ -1,0 +1,26 @@
+.list-page {
+  padding: 16rpx;
+}
+
+.order-card {
+  background: #fff;
+  padding: 16rpx;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+
+.status {
+  color: #07c160;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  margin-top: 200rpx;
+}
