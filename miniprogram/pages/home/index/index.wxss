@@ -1,0 +1,41 @@
+.banner {
+  width: 100%;
+  height: 320rpx;
+  border-radius: 16rpx;
+}
+
+.section-title {
+  margin: 24rpx 0 16rpx;
+  font-weight: 600;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.product-card {
+  width: calc(50% - 16rpx);
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.product-image {
+  width: 100%;
+  height: 200rpx;
+  border-radius: 12rpx;
+}
+
+.product-name {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+}
+
+.product-price {
+  margin-top: 8rpx;
+  color: #ff5500;
+  font-weight: bold;
+}

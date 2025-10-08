@@ -1,0 +1,17 @@
+<view class="list-page">
+  <block wx:if="{{orders.length}}">
+    <block wx:for="{{orders}}" wx:key="id">
+      <view class="order-card" data-id="{{item.id}}" bindtap="viewDetail">
+        <view class="row">
+          <text>订单号：{{item.orderNo}}</text>
+          <text class="status">{{item.status}}</text>
+        </view>
+        <view class="row">
+          <text>应付：￥{{item.payAmount || item.totalAmount}}</text>
+          <text>{{item.createdAt}}</text>
+        </view>
+      </view>
+    </block>
+  </block>
+  <view wx:else class="empty">暂无订单</view>
+</view>

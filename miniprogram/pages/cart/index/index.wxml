@@ -1,0 +1,22 @@
+<view class="cart-page">
+  <block wx:if="{{cart.items.length}}">
+    <block wx:for="{{cart.items}}" wx:key="id">
+      <view class="cart-item">
+        <image src="{{item.product && item.product.imageUrls && item.product.imageUrls[0] || 'https://via.placeholder.com/200'}}" />
+        <view class="info">
+          <view class="name">{{item.product && item.product.name}}</view>
+          <view class="price">￥{{item.product && item.product.price}}</view>
+          <view class="qty">
+            <input type="number" value="{{item.qty}}" data-id="{{item.id}}" bindinput="changeQty" />
+            <button data-id="{{item.id}}" bindtap="removeItem">删除</button>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="summary">
+      <text>合计：￥{{cart.total}}</text>
+      <button type="primary" bindtap="goCheckout">去结算</button>
+    </view>
+  </block>
+  <view wx:else class="empty">购物车空空如也</view>
+</view>

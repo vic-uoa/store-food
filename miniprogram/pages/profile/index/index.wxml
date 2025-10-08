@@ -1,0 +1,23 @@
+<view class="profile-page">
+  <view wx:if="{{!user}}" class="login-card">
+    <text>登录后可查看积分与订单</text>
+    <button open-type="getPhoneNumber" bindgetphonenumber="handlePhoneLogin">手机号快捷登录</button>
+  </view>
+  <view wx:else>
+    <view class="user-card">
+      <text class="nickname">{{user.nickname || '未命名家长'}}</text>
+      <text class="phone">{{user.phone}}</text>
+    </view>
+    <view class="points-card">
+      <text class="balance">积分：{{points}}</text>
+      <view class="history-title">积分明细</view>
+      <block wx:for="{{history}}" wx:key="id">
+        <view class="history-row">
+          <text>{{item.reason}}</text>
+          <text>+{{item.delta}}</text>
+        </view>
+      </block>
+    </view>
+    <navigator url="/pages/order/list/index" class="link">查看我的订单</navigator>
+  </view>
+</view>

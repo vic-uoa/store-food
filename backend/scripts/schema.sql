@@ -1,0 +1,93 @@
+-- WeMall schema
+CREATE TABLE IF NOT EXISTS users (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  openid VARCHAR(64) UNIQUE,
+  phone VARCHAR(20) UNIQUE,
+  nickname VARCHAR(32),
+  points INT DEFAULT 0,
+  status TINYINT DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(64) NOT NULL,
+  parent_id BIGINT DEFAULT NULL,
+  sort_order INT DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS products (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(128) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  image_urls JSON,
+  category_id BIGINT,
+  stock INT DEFAULT 0,
+  sort_order INT DEFAULT 0,
+  status ENUM('on_shelf','off_shelf','deleted') DEFAULT 'off_shelf',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS cart_items (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  user_id BIGINT NOT NULL,
+  product_id BIGINT NOT NULL,
+  qty INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uniq_user_product (user_id, product_id)
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  order_no VARCHAR(40) UNIQUE,
+  user_id BIGINT NOT NULL,
+  status ENUM('pending_payment','paid','shipped','completed','canceled') DEFAULT 'pending_payment',
+  total_amount DECIMAL(10,2) NOT NULL,
+  pay_amount DECIMAL(10,2),
+  pay_method VARCHAR(20),
+  address_snapshot JSON,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  paid_at DATETIME NULL,
+  shipped_at DATETIME NULL,
+  completed_at DATETIME NULL,
+  canceled_at DATETIME NULL,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  order_id BIGINT NOT NULL,
+  product_id BIGINT NOT NULL,
+  product_name VARCHAR(128),
+  price DECIMAL(10,2),
+  qty INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS points_rules (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  ratio_amount DECIMAL(10,2) NOT NULL,
+  ratio_point INT NOT NULL,
+  enabled TINYINT DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS points_ledger (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  user_id BIGINT NOT NULL,
+  delta INT NOT NULL,
+  reason VARCHAR(64),
+  ref_id VARCHAR(64),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS order_audit_logs (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  order_id BIGINT NOT NULL,
+  from_status VARCHAR(32),
+  to_status VARCHAR(32),
+  remark VARCHAR(255),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
